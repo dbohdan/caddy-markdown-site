@@ -1,0 +1,18 @@
+http://localhost:8080 {
+    root * website
+    
+    file_server
+
+    @page not path /media/*
+    templates @page
+    rewrite @page /template.html
+
+    encode gzip
+
+    handle_errors {
+        rewrite * /error.html
+
+        file_server
+        templates
+    }
+}

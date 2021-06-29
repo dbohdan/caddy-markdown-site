@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{{ $pathParts := splitList "/" .OriginalReq.URL.Path }}
+{{ $markdownFilePath := printf "%s.md" (default "index" (slice $pathParts 1 | join "/")) }}
+{{ $markdownFile := (include $markdownFilePath | splitFrontMatter) }}
+{{ $title := default .OriginalReq.URL.Path $markdownFile.Meta.title }}
+
+<html>
+<head>
+    <title>{{ $title }}</title>
+    <meta property="og:title" content="{{ $title }}">
+    <meta name="twitter:title" value="{{ $title }}">
+    
+    {{ include "/includes/head.html" }}
+</head>
+<body>
+    {{ include "/includes/header.html" }}
+    <main>
+        <article>{{ markdown $markdownFile.Body }}</article>
+    </main>
+    {{ include "/includes/footer.html" }}
+</body>
+</html>
