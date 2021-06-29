@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      run: sudo apt install -y tcl
+      run: sudo apt install -y tcl tcllib
     - name: Download and install Caddy
       run: wget https://github.com/caddyserver/caddy/releases/download/v2.4.3/caddy_2.4.3_linux_amd64.deb && sudo dpkg -i caddy_2.4.3_linux_amd64.deb
     - name: Checkout
