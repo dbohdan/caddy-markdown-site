@@ -1,0 +1,71 @@
+#! /usr/bin/env tclsh
+
+package require Tcl 8.6-10
+
+package require fileutil
+package require http
+package require tcltest
+
+
+proc main {} {
+    cd [file dirname [info script]]
+
+    set caddy [expr {
+        [info exist ::env(CADDY)]
+        ? $::env(CADDY)
+        : {caddy}
+    }]
+    set port 8080
+    set url http://localhost:$port
+
+    set pid [run $caddy run &]
+    after 500
+
+    tcltest::test index-1.1 {} -body {
+        fetch $url
+    } -match glob -result {*<title>Welcome*}
+
+    tcltest::test subdir-1.1 {} -body {
+        fetch $url/subdir
+    } -match glob -result {*index of a subdirectory*}
+
+    tcltest::test extension-1.1 {} -body {
+        set a [compress-whitespace [fetch $url/index]]
+        set b [compress-whitespace [fetch $url/index.md]]
+        list [expr { $a eq $b }] $a $b
+    } -match glob -result {1 *}
+
+
+    catch {
+        fetch -method post http://localhost:2019/stop
+    }
+
+    # Exit with a nonzero status if there are failed tests.
+    set failed [expr {$tcltest::numTests(Failed) > 0}]
+
+    tcltest::cleanupTests
+    return $failed
+}
+
+
+proc run args {
+    exec >@ stdout 2>@ stderr {*}$args
+}
+
+
+proc fetch args {
+    try {
+        set token [http::geturl {*}$args]
+        http::data $token
+    } finally {
+        http::cleanup $token
+    }
+}
+
+
+proc compress-whitespace text {
+    regsub -all {(\s)\s+} $text {\1}
+}
+
+
+exit [main]
