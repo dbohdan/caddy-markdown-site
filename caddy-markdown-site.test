@@ -17,7 +17,7 @@ proc main {} {
     set url http://localhost:$port
 
     set pid [run $caddy run &]
-    after 500
+    after 2000
 
     tcltest::test index-1.1 {} -body {
         fetch $url

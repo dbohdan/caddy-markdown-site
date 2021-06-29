@@ -1,52 +1,52 @@
 http://localhost:8080 {
-    root * website
-    
-    encode gzip
+	root * website
 
-    file_server
-    templates
+	encode gzip
 
-    @media {
-        path /favicon.ico
-        path /media/*
-    }
-    @markdown {
-        path_regexp \.md$
-    }
-    @markdown_exists {
-        file {path}.md
-    }
+	file_server
+	templates
 
-    handle @media {
-        file_server
-    }
-    handle @markdown {
-        rewrite * /templates/index.html
-    }
-    handle @markdown_exists {
-        map {path} {caddy_markdown_site.append_to_path} {
-            default extension
-        }
-        rewrite * /templates/index.html
-    }
+	@media {
+		path /favicon.ico
+		path /media/*
+	}
+	@markdown {
+		path_regexp \.md$
+	}
+	@markdown_exists {
+		file {path}.md
+	}
 
-    handle_errors {
-        file_server
-        templates
+	handle @media {
+		file_server
+	}
+	handle @markdown {
+		rewrite * /templates/index.html
+	}
+	handle @markdown_exists {
+		map {path} {caddy_markdown_site.append_to_path} {
+			default extension
+		}
+		rewrite * /templates/index.html
+	}
 
-        @markdown_index_exists_404 {
-            file {path}/index.md
-            expression `{http.error.status_code} == 404`
-        }
+	handle_errors {
+		file_server
+		templates
 
-        handle @markdown_index_exists_404 {
-            map {path} {caddy_markdown_site.append_to_path} {
-                default index
-            }
-            rewrite * /templates/index.html
-        }
-        handle {
-            rewrite * /templates/error.html
-        }
-    }
+		@markdown_index_exists_404 {
+			file {path}/index.md
+			expression `{http.error.status_code} == 404`
+		}
+
+		handle @markdown_index_exists_404 {
+			map {path} {caddy_markdown_site.append_to_path} {
+				default index
+			}
+			rewrite * /templates/index.html
+		}
+		handle {
+			rewrite * /templates/error.html
+		}
+	}
 }
