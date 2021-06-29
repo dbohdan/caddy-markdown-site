@@ -1,0 +1,14 @@
+name: CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependencies
+      run: sudo apt install -y tcl
+    - name: Download and install Caddy
+      run: wget https://github.com/caddyserver/caddy/releases/download/v2.4.3/caddy_2.4.3_linux_amd64.deb && sudo dpkg -i caddy_2.4.3_linux_amd64.deb
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Run tests
+      run: make test
