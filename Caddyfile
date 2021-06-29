@@ -1,21 +1,52 @@
 http://localhost:8080 {
     root * website
     
-    file_server
+    encode gzip
 
-    @page not {
+    file_server
+    templates
+
+    @media {
         path /favicon.ico
         path /media/*
     }
-    templates @page
-    rewrite @page /templates/index.html
+    @markdown {
+        path_regexp \.md$
+    }
+    @markdown_exists {
+        file {path}.md
+    }
 
-    encode gzip
+    handle @media {
+        file_server
+    }
+    handle @markdown {
+        rewrite * /templates/index.html
+    }
+    handle @markdown_exists {
+        map {path} {caddy_markdown_site.append_to_path} {
+            default extension
+        }
+        rewrite * /templates/index.html
+    }
 
     handle_errors {
-        rewrite * /templates/error.html
-
         file_server
         templates
+
+        @markdown_index_exists {
+            file {path}/index.md
+            expression `{http.error.status_code} == 404`
+        }
+
+        handle @markdown_index_exists {
+            map {path} {caddy_markdown_site.append_to_path} {
+                default index
+            }
+            rewrite @markdown_index_exists /templates/index.html
+        }
+        handle {
+            rewrite * /templates/error.html
+        }
     }
 }
