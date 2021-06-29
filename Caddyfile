@@ -34,16 +34,16 @@ http://localhost:8080 {
         file_server
         templates
 
-        @markdown_index_exists {
+        @markdown_index_exists_404 {
             file {path}/index.md
             expression `{http.error.status_code} == 404`
         }
 
-        handle @markdown_index_exists {
+        handle @markdown_index_exists_404 {
             map {path} {caddy_markdown_site.append_to_path} {
                 default index
             }
-            rewrite @markdown_index_exists /templates/index.html
+            rewrite @markdown_index_exists_404 /templates/index.html
         }
         handle {
             rewrite * /templates/error.html
