@@ -11,13 +11,13 @@
     <meta property="og:title" content="{{ $title }}">
     <meta name="twitter:title" value="{{ $title }}">
     
-    {{ include "/includes/head.html" }}
+    {{ include "/templates/head.html" }}
 </head>
 <body>
-    {{ include "/includes/header.html" }}
+    {{ include "/templates/header.html" }}
     <main>
         <article>{{ markdown $markdownFile.Body }}</article>
     </main>
-    {{ include "/includes/footer.html" }}
+    {{ include "/templates/footer.html" }}
 </body>
 </html>

@@ -5,12 +5,12 @@ http://localhost:8080 {
 
     @page not path /media/*
     templates @page
-    rewrite @page /template.html
+    rewrite @page /templates/index.html
 
     encode gzip
 
     handle_errors {
-        rewrite * /error.html
+        rewrite * /templates/error.html
 
         file_server
         templates
