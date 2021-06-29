@@ -9,11 +9,10 @@ package require tcltest
 proc main {} {
     cd [file dirname [info script]]
 
-    set caddy [expr {
-        [info exist ::env(CADDY)]
-        ? $::env(CADDY)
-        : {caddy}
-    }]
+    set caddy caddy
+    if {[info exist ::env(CADDY)]} {
+        set caddy $::env(CADDY)
+    }
     set port 8080
     set url http://localhost:$port
 
@@ -35,9 +34,7 @@ proc main {} {
     } -match glob -result {1 *}
 
 
-    catch {
-        fetch -method post http://localhost:2019/stop
-    }
+    fetch http://localhost:2019/stop -method POST
 
     # Exit with a nonzero status if there are failed tests.
     set failed [expr {$tcltest::numTests(Failed) > 0}]
@@ -52,12 +49,12 @@ proc run args {
 }
 
 
-proc fetch args {
+proc fetch {url args} {
     try {
-        set token [http::geturl {*}$args]
+        set token [http::geturl $url {*}$args]
         http::data $token
     } finally {
-        http::cleanup $token
+        catch { http::cleanup $token }
     }
 }
 
