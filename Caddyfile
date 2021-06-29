@@ -43,7 +43,7 @@ http://localhost:8080 {
             map {path} {caddy_markdown_site.append_to_path} {
                 default index
             }
-            rewrite @markdown_index_exists_404 /templates/index.html
+            rewrite * /templates/index.html
         }
         handle {
             rewrite * /templates/error.html
