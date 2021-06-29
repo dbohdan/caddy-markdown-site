@@ -2,6 +2,7 @@
 
 package require Tcl 8.6-10
 
+package require fileutil
 package require http
 package require tcltest
 
@@ -13,10 +14,15 @@ proc main {} {
     if {[info exist ::env(CADDY)]} {
         set caddy $::env(CADDY)
     }
-    set port 8080
+    set port [expr { 8000 + int(100 * rand()) }]
     set url http://localhost:$port
+    set adminPort [expr { 22000 + int(100 * rand()) }]
+    set adminAddr localhost:$adminPort
 
-    set pid [run $caddy run &]
+    set config [regsub :8080 [fileutil::cat Caddyfile] :$port]
+    fileutil::writeFile Caddyfile.test "{\n\tadmin $adminAddr\n}\n$config"
+
+    set pid [run $caddy run -config Caddyfile.test &]
     after 2000
 
     tcltest::test index-1.1 {} -body {
@@ -34,7 +40,7 @@ proc main {} {
     } -match glob -result {1 *}
 
 
-    fetch http://localhost:2019/stop -method POST
+    fetch http://$adminAddr/stop -method POST
 
     # Exit with a nonzero status if there are failed tests.
     set failed [expr {$tcltest::numTests(Failed) > 0}]
