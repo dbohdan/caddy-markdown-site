@@ -8,7 +8,7 @@
     {{ $path = printf "%s/index.md" $path }}
 {{ end }}
 {{ $markdownFile := (include $path | splitFrontMatter) }}
-{{ $title := default $path $markdownFile.Meta.title }}
+{{ $title := default .OriginalReq.URL.Path $markdownFile.Meta.title }}
 
 <html>
 <head>
