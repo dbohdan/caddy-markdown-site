@@ -1,5 +1,23 @@
 # caddy-markdown-site
 
+This project allows you to serve Markdown files as adequately good-looking
+minimal web pages with the [Caddy web server](https://caddyserver.com/).  It is
+not a static site generator; there is no build step.  It consists of a
+configuration file (Caddyfile) and some templates.  You will need some
+knowledge of Caddy to use and customize it.
+
+## Features
+
+* If your file is `website/foo.md` and your domain example.com, you will be
+able to access the file as both example.com/foo.md and example.com/foo with
+no extension.
+* `index.md` serves as a directory index (but `index.html` has priority).
+* You can customize the look of your site without touching the main template.
+Edit `website/templates/{head,header,footer}.html` to do it.  `head.html` links
+the stylesheet.
+* An error page is shown on error.
+
+
 ## License
 
 MIT.
