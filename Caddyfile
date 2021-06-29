@@ -3,7 +3,10 @@ http://localhost:8080 {
     
     file_server
 
-    @page not path /media/*
+    @page not {
+        path /favicon.ico
+        path /media/*
+    }
     templates @page
     rewrite @page /templates/index.html
 
