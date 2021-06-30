@@ -2,7 +2,7 @@
 # Copyright (c) 2021 D. Bohdan.  License: MIT.
 
 http://localhost:8080 {
-	root * website
+	root * demo
 
 	encode gzip
 
