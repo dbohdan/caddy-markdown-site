@@ -6,6 +6,7 @@ not a static site generator; there is no build step.  It consists of a
 configuration file (Caddyfile) and some templates.  You will need some
 knowledge of Caddy to use and customize it.
 
+
 ## Features
 
 * If your file is `website/foo.md` and your domain example.com, you will be
@@ -18,12 +19,28 @@ the stylesheet.
 * An error page is shown on error.
 
 
+## Screenshot
+
+![A screenshot the index page of the demo website](screenshot.png)
+
+
 ## License
 
 MIT.
 
-[index.html](website/templates/index.html) derives from the [index.html template](https://github.com/caddyserver/website/blob/1ff5103c73c921c8faa82ef3342d904a7f6a8e22/src/docs/index.html) used on the Caddy website.
+[index.html](website/templates/index.html) derives from the
+[index.html template](https://github.com/caddyserver/website/blob/1ff5103c73c921c8faa82ef3342d904a7f6a8e22/src/docs/index.html) used on the Caddy website.
 
-[head.html](website/templates/head.html) uses [axist](https://github.com/ruanmartinelli/axist) CSS.
+[head.html](website/templates/head.html) links
+[axist](https://github.com/ruanmartinelli/axist), a
+[classless](https://github.com/dbohdan/classless-css) CSS stylesheet.
 
-[nmos-mirror.png](website/media/nmos-mirror.png) [from Openclipart](https://openclipart.org/detail/283250/nmos-mirror).
+[photo.jpg](website/media/photo.jpg) by Siarhei Plashchynski
+[on Unsplash](https://unsplash.com/photos/6FmtLICCvxI).
+
+> Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license
+> to download, copy, modify, distribute, perform, and use photos from Unsplash
+> for free, including for commercial purposes, without permission from or
+> attributing the photographer or Unsplash. This license does not include the
+> right to compile photos from Unsplash to replicate a similar or competing
+> service.
