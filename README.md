@@ -27,10 +27,11 @@ the stylesheet.
 ## Requirements
 
 * Caddy 2.3 or later.  Earlier 2.x versions may work but aren't tested.
-* Optional: [entr](https://github.com/eradman/entr) for development
-(`make dev`).
-* Optional: Tcl 8.6 or later and Tcllib to run the
-[tests](caddy-markdown-site.test) (`make test`).
+* Optional:
+    * [entr](https://github.com/eradman/entr) for development
+      (`make dev`).
+    * Optional: Tcl 8.6 or later and Tcllib to run the
+      [tests](caddy-markdown-site.test) (`make test`).
 
 
 ## License
