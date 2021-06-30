@@ -34,15 +34,15 @@ proc main {} {
     } -match glob -result {*<title>Welcome*}
 
     tcltest::test index-1.2 {} -body {
-        fetch $url/html-index/
+        fetch $url/index-html/
     } -match glob -result {*axist.min.css*<h1>This is an HTML index.</h1>*}
 
     tcltest::test index-1.3 {} -body {
-        fetch $url/txt-index/
+        fetch $url/index-txt/
     } -match glob -result {*text file index*}
 
     tcltest::test subdir-1.1 {} -body {
-        fetch $url/subdir
+        fetch $url/index-md
     } -match glob -result {*index of a subdirectory*}
 
     tcltest::test extension-1.1 {} -body {
