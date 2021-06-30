@@ -26,7 +26,7 @@ the stylesheet.
 
 ## Requirements
 
-* Caddy 2.3 or later.  Earlier 2.x versions may work but aren't tested.
+* Caddy 2.4 or later.
 * Optional:
     * [entr](https://github.com/eradman/entr) for development
       (`make dev`).
