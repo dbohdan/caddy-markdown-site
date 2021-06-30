@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+{{/* https://github.com/dbohdan/caddy-markdown-site */}}
+
 {{ $code := placeholder "http.error.status_code" }}
 {{ $text := placeholder "http.error.status_text" }}
 
@@ -14,15 +16,15 @@
 
     <main>
         <h1>Error {{ $code }}</h1>
-    {{ if eq $code "403" }}
-        <p>You don't have permission to access this resource.</p>
-    {{ else if eq $code "404" }}
-        <p>The requested URL was not found on this server.</p>
-    {{ else if eq $code "500" }}
-        <p>An internal server error has occurred.</p>
-    {{ else }}
-        <p>{{ $text }}.</p>
-    {{ end }}
+        {{ if eq $code "403" }}
+            <p>You don't have permission to access this resource.</p>
+        {{ else if eq $code "404" }}
+            <p>The requested URL was not found on this server.</p>
+        {{ else if eq $code "500" }}
+            <p>An internal server error has occurred.</p>
+        {{ else }}
+            <p>{{ $text }}.</p>
+        {{ end }}
     </main>
 
     {{ include "/templates/footer.html" }}

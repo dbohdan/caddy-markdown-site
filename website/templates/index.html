@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+{{/* https://github.com/dbohdan/caddy-markdown-site */}}
+
 {{ $path := .OriginalReq.URL.Path }}
 {{ $append := placeholder "caddy_markdown_site.append_to_path" }}
 {{ if eq $append "extension" }}
