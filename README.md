@@ -9,12 +9,12 @@ knowledge of Caddy to use and customize it.
 
 ## Features
 
-* If your file is `website/foo.md` and your domain example.com, you will be
+* If your file is `demo/foo.md` and your domain example.com, you will be
 able to access the file as both example.com/foo.md and example.com/foo with
 no extension.
 * `index.md` serves as a directory index (but `index.html` has priority).
 * You can customize the look of your site without touching the main template.
-Edit `website/templates/{head,header,footer}.html` to do it.  `head.html` links
+Edit `templates/{head,header,footer}.html` to do it.  `head.html` links
 the stylesheet.
 * An error page is shown on error.
 
@@ -38,14 +38,14 @@ the stylesheet.
 
 MIT.
 
-[index.html](website/templates/index.html) derives from the
+[index.html](templates/index.html) derives from the
 [index.html template](https://github.com/caddyserver/website/blob/1ff5103c73c921c8faa82ef3342d904a7f6a8e22/src/docs/index.html) used on the Caddy website.
 
-[axist.min.css](website/media/axist.min.css) is
+[axist.min.css](templates/axist.min.css) is
 [axist](https://github.com/ruanmartinelli/axist), a
 [classless](https://github.com/dbohdan/classless-css) CSS stylesheet.
 
-[photo.jpg](website/media/photo.jpg) by Siarhei Plashchynski
+[photo.jpg](demo/media/photo.jpg) by Siarhei Plashchynski
 [on Unsplash](https://unsplash.com/photos/6FmtLICCvxI).
 
 > Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license
