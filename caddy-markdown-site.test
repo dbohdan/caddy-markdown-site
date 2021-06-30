@@ -1,11 +1,14 @@
 #! /usr/bin/env tclsh
+# These tests require Tcl 8.6+ and Tcllib installed.  On Debian/Ubuntu run,
+# $ sudo apt install tcl tcllib
+# You will also need a Caddy binary in the PATH or to specify its location
+# in the environment variable CADDY.
 
 package require Tcl 8.6-10
 
 package require fileutil
 package require http
 package require tcltest
-
 
 proc main {} {
     cd [file dirname [info script]]
@@ -14,16 +17,17 @@ proc main {} {
     if {[info exist ::env(CADDY)]} {
         set caddy $::env(CADDY)
     }
-    set port [expr { 8000 + int(100 * rand()) }]
-    set url http://localhost:$port
+    set port      [expr { 8000 + int(100 * rand()) }]
+    set url       http://localhost:$port
     set adminPort [expr { 22000 + int(100 * rand()) }]
     set adminAddr localhost:$adminPort
 
     set config [regsub :8080 [fileutil::cat Caddyfile] :$port]
     fileutil::writeFile Caddyfile.test "{\n\tadmin $adminAddr\n}\n$config"
 
-    set pid [run $caddy run -config Caddyfile.test &]
+    set pid [exec $caddy run -config Caddyfile.test >@ stdout 2>@ stderr &]
     after 2000
+
 
     tcltest::test index-1.1 {} -body {
         fetch $url
@@ -43,17 +47,11 @@ proc main {} {
     fetch http://$adminAddr/stop -method POST
 
     # Exit with a nonzero status if there are failed tests.
-    set failed [expr {$tcltest::numTests(Failed) > 0}]
+    set failed [expr { $tcltest::numTests(Failed) > 0 }]
 
     tcltest::cleanupTests
     return $failed
 }
-
-
-proc run args {
-    exec >@ stdout 2>@ stderr {*}$args
-}
-
 
 proc fetch {url args} {
     try {
@@ -64,10 +62,8 @@ proc fetch {url args} {
     }
 }
 
-
 proc compress-whitespace text {
     regsub -all {(\s)\s+} $text {\1}
 }
-
 
 exit [main]
