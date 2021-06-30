@@ -10,6 +10,9 @@ http://localhost:8080 {
 		path /favicon.ico
 		path /media/*
 	}
+	@templates {
+		path /templates/*
+	}
 	@markdown {
 		path_regexp \.md$
 	}
@@ -19,6 +22,9 @@ http://localhost:8080 {
 
 	handle @media {
 		file_server
+	}
+	handle @templates {
+		error 403
 	}
 	handle @markdown {
 		rewrite * /templates/index.html
