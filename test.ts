@@ -23,7 +23,7 @@ config = `{\n\tadmin ${adminAddr}\n}\n\n` +
   config.replace(":8080", `:${port}`);
 await Deno.writeTextFile("Caddyfile.test", config);
 
-const p = Deno.run({
+Deno.run({
   cmd: [caddy, "run", "-config", "Caddyfile.test"],
 });
 

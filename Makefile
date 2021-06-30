@@ -10,6 +10,6 @@ test:
 	    --allow-net \
 	    --allow-run \
 	    --allow-write=Caddyfile.test \
-	    caddy-markdown-site.ts \
+	    test.ts \
 
 .PHONY: dev test
