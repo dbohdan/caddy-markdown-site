@@ -15,6 +15,7 @@ http://localhost:8080 {
 	}
 	@templates {
 		path /templates/*
+		not path /templates/*.css /templates/*.js
 	}
 	@markdown {
 		path_regexp \.md$

@@ -51,6 +51,10 @@ proc main {} {
         list [expr { $a eq $b }] $a $b
     } -match glob -result {1 *}
 
+    tcltest::test template-css-1.1 {} -body {
+        fetch $url/templates/axist.min.css
+    } -match glob -result *font-size:*
+
 
     fetch http://$adminAddr/stop -method POST
 
