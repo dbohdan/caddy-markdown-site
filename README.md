@@ -15,7 +15,7 @@ no extension.
 * `index.md` serves as a directory index (but `index.html` has priority).
 * You can customize the look of your site without touching the main template.
 Edit `templates/{head,header,footer}.html` to do it.  `head.html` links
-the stylesheet.
+the style sheet.
 * An error page is shown on error.
 
 
@@ -43,7 +43,7 @@ MIT.
 
 [axist.min.css](templates/axist.min.css) is
 [axist](https://github.com/ruanmartinelli/axist), a
-[classless](https://github.com/dbohdan/classless-css) CSS stylesheet.
+[classless](https://github.com/dbohdan/classless-css) CSS library.
 
 [photo.jpg](demo/media/photo.jpg) by Siarhei Plashchynski
 [on Unsplash](https://unsplash.com/photos/6FmtLICCvxI).
