@@ -28,10 +28,10 @@ the style sheet.
 
 * Caddy 2.4 or later.
 * Optional:
+    * [Deno](https://deno.land/) 1.11 or later to run the
+      [tests](caddy-markdown-site.ts) (`make test`).
     * [entr](https://github.com/eradman/entr) for development
       (`make dev`).
-    * Optional: Tcl 8.6 or later and Tcllib to run the
-      [tests](caddy-markdown-site.test) (`make test`).
 
 
 ## License
