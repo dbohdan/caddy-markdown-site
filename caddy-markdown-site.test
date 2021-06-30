@@ -33,6 +33,14 @@ proc main {} {
         fetch $url
     } -match glob -result {*<title>Welcome*}
 
+    tcltest::test index-1.2 {} -body {
+        fetch $url/html-index/
+    } -match glob -result {*axist.min.css*<h1>This is an HTML index.</h1>*}
+
+    tcltest::test index-1.3 {} -body {
+        fetch $url/txt-index/
+    } -match glob -result {*text file index*}
+
     tcltest::test subdir-1.1 {} -body {
         fetch $url/subdir
     } -match glob -result {*index of a subdirectory*}
