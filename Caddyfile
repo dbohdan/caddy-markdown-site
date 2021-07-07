@@ -9,6 +9,9 @@ http://localhost:8080 {
 	file_server
 	templates
 
+	@root {
+		path /
+	}
 	@media {
 		path /favicon.ico
 		path /media/*
@@ -24,6 +27,9 @@ http://localhost:8080 {
 		file {path}.md
 	}
 
+	handle @root {
+		redir * /index
+	}
 	handle @media {
 		file_server
 	}
