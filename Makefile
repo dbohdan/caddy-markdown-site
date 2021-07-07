@@ -5,9 +5,9 @@ dev:
 
 test:
 	deno test \
-	    --allow-read=Caddyfile \
 	    --allow-env \
 	    --allow-net \
+	    --allow-read=Caddyfile \
 	    --allow-run \
 	    --allow-write=Caddyfile.test \
 	    test.ts \
