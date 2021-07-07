@@ -47,9 +47,15 @@ Deno.test("index 3", async () => {
   assertStringIncludes(html, "text file index");
 });
 
-Deno.test("subdir", async () => {
+Deno.test("index 4", async () => {
   const html = await get("/index-md");
   assertStringIncludes(html, "index of a subdirectory");
+});
+
+Deno.test("index 5", async () => {
+  const req = await fetch(`${url}/index-md`);
+  await req.text()
+  assertEquals(req.status, 200);
 });
 
 Deno.test("extension", async () => {
