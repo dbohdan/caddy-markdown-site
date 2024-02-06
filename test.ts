@@ -1,3 +1,5 @@
+#! /usr/bin/env -S deno test --allow-env --allow-net --allow-read=Caddyfile --allow-run --allow-write=Caddyfile.test --check
+
 import {
   assertEquals,
   assertStringIncludes,
