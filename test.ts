@@ -25,9 +25,14 @@ config = `{\n\tadmin ${adminAddr}\n}\n\n` +
   config.replace(":8080", `:${port}`);
 await Deno.writeTextFile("Caddyfile.test", config);
 
-Deno.run({
-  cmd: [caddy, "run", "-config", "Caddyfile.test"],
-});
+const caddyProcess = (new Deno.Command(
+  caddy,
+  {
+    args: ["run", "-config", "Caddyfile.test"],
+    stderr: "inherit",
+    stdout: "inherit",
+  },
+)).spawn();
 
 await delay(2000);
 
@@ -56,7 +61,7 @@ Deno.test("index 4", async () => {
 
 Deno.test("index 5", async () => {
   const req = await fetch(`${url}/index-md`);
-  await req.text()
+  await req.text();
   assertEquals(req.status, 200);
 });
 
