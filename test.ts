@@ -28,7 +28,7 @@ await Deno.writeTextFile("Caddyfile.test", config);
 const caddyProcess = (new Deno.Command(
   caddy,
   {
-    args: ["run", "-config", "Caddyfile.test"],
+    args: ["run", "--config", "Caddyfile.test"],
     stderr: "inherit",
     stdout: "inherit",
   },
