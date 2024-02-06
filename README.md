@@ -28,7 +28,7 @@ the style sheet.
 
 * Caddy 2.4 or later.
 * Optional:
-    * [Deno](https://deno.land/) 1.11 or later to run the [tests](test.ts)
+    * [Deno](https://deno.land/) 1.31 or later to run the [tests](test.ts)
       (`make test`).
     * [entr](https://github.com/eradman/entr) for development
       (`make dev`).
