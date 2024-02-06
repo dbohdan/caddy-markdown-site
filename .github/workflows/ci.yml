@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download and install Caddy
-      run: wget --quiet https://github.com/caddyserver/caddy/releases/download/v2.4.3/caddy_2.4.3_linux_amd64.deb && sudo dpkg -i caddy_2.4.3_linux_amd64.deb
+      run: wget --output-document caddy.deb --quiet https://github.com/caddyserver/caddy/releases/download/v2.7.6/caddy_2.7.6_linux_amd64.deb && sudo dpkg -i caddy.deb
     - name: Download and install Deno
-      run: wget --output-document deno.zip --quiet https://github.com/denoland/deno/releases/download/v1.11.3/deno-x86_64-unknown-linux-gnu.zip && unzip deno.zip deno && sudo install deno /usr/local/bin/
+      run: wget --output-document deno.zip --quiet https://github.com/denoland/deno/releases/download/v1.40.3/deno-x86_64-unknown-linux-gnu.zip && unzip deno.zip deno && sudo install deno /usr/local/bin/
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
     - name: Run tests
       run: make test
