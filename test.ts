@@ -45,7 +45,7 @@ Deno.test("index 1", async () => {
 
 Deno.test("index 2", async () => {
   const html = await get("/index-html/");
-  assertStringIncludes(html, "axist.min.css");
+  assertStringIncludes(html, "axist.css");
   assertStringIncludes(html, "<h1>This is an HTML index.</h1>");
 });
 
@@ -72,7 +72,7 @@ Deno.test("extension", async () => {
 });
 
 Deno.test("template CSS", async () => {
-  const css = await get("/templates/axist.min.css");
+  const css = await get("/templates/axist.css");
   assertStringIncludes(css, "font-size:");
 });
 

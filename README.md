@@ -42,7 +42,7 @@ MIT.
 [index.html](templates/index.html) derives from the
 [index.html template](https://github.com/caddyserver/website/blob/1ff5103c73c921c8faa82ef3342d904a7f6a8e22/src/docs/index.html) used on the Caddy website.
 
-[axist.min.css](templates/axist.min.css) is
+[axist.css](templates/axist.css) is
 [axist](https://github.com/ruanmartinelli/axist), a
 [classless](https://github.com/dbohdan/classless-css) CSS library.
 
