@@ -25,11 +25,11 @@
 </head>
 
 <body>
-    {{ include "/templates/header.html" }}
+    {{ include "/templates/body-header.html" }}
     <main>
         <article>{{ markdown $markdownFile.Body }}</article>
     </main>
-    {{ include "/templates/footer.html" }}
+    {{ include "/templates/body-footer.html" }}
 </body>
 
 </html>
