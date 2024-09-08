@@ -71,6 +71,11 @@ Deno.test("extension", async () => {
   assertEquals(compressWhitespace(a), compressWhitespace(b));
 });
 
+Deno.test("front matter vars", async () => {
+  const html = await get();
+  assertStringIncludes(html, `dir="ltr" lang="en"`);
+});
+
 Deno.test("template CSS", async () => {
   const css = await get("/templates/axist.css");
   assertStringIncludes(css, "font-size:");

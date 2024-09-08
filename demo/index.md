@@ -1,4 +1,6 @@
 ---
+lang: en
+text_dir: ltr
 title: Welcome!
 ---
 # Hello!
