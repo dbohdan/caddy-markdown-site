@@ -1,5 +1,6 @@
 # https://github.com/dbohdan/caddy-markdown-site
-# Copyright (c) 2021 D. Bohdan.  License: MIT.
+# Copyright (c) 2021, 2025 D. Bohdan.
+# License: MIT.
 
 http://localhost:8080 {
 	root * demo
@@ -9,29 +10,23 @@ http://localhost:8080 {
 	file_server
 	templates
 
-	@media {
-		path /favicon.ico
-		path /media/*
-	}
 	@templates {
 		path /templates/*
 		not path /templates/*.css /templates/*.js
 	}
-	@markdown {
-		path_regexp \.md$
-	}
-	@markdown_exists {
-		file {path}.md
-	}
-
-	handle @media {
-		file_server
-	}
 	handle @templates {
 		error 403
 	}
+
+	@markdown {
+		path_regexp \.md$
+	}
 	handle @markdown {
 		rewrite * /templates/index.html
+	}
+
+	@markdown_exists {
+		file {path}.md
 	}
 	handle @markdown_exists {
 		map {path} {caddy_markdown_site.append_to_path} {
@@ -48,7 +43,6 @@ http://localhost:8080 {
 			file {path}/index.md
 			expression `{http.error.status_code} == 404`
 		}
-
 		handle @markdown_index_exists_404 {
 			map {path} {caddy_markdown_site.append_to_path} {
 				default index
@@ -58,6 +52,7 @@ http://localhost:8080 {
 			}
 			rewrite * /templates/index.html
 		}
+
 		handle {
 			rewrite * /templates/error.html
 		}
