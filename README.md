@@ -18,7 +18,7 @@ Expect a lot of work, and possibly insurmountable barriers, if you decide to ada
 
 - Caddy 2.4 or later.
 - Optional:
-    - [Deno](https://deno.land/) 1.31 or later to run the [tests](test.ts)
+    - [Node.js](https://nodejs.org/) 20 or later to run the [tests](test.mjs)
       (`just test`).
     - [entr](https://github.com/eradman/entr) for development
       (`just dev`).

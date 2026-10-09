@@ -10,11 +10,10 @@ jobs:
       run: |
         wget --output-document caddy.deb --quiet https://github.com/caddyserver/caddy/releases/download/v2.7.6/caddy_2.7.6_linux_amd64.deb
         sudo dpkg -i caddy.deb
-    - name: Download and install Deno
-      run: |
-        wget --output-document deno.zip --quiet https://github.com/denoland/deno/releases/download/v1.40.3/deno-x86_64-unknown-linux-gnu.zip
-        unzip deno.zip deno
-        sudo install deno /usr/local/bin/
+    - name: Set up Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
     - name: Set up just
       uses: extractions/setup-just@v2
     - name: Run tests
