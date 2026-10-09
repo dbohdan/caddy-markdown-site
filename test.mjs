@@ -10,7 +10,7 @@ const randInt = (min, max) => {
 };
 
 const compressWhitespace = (s) => {
-  s.replaceAll(/(\s)\s+/g, "$1");
+  return s.replaceAll(/(\s)\s+/g, "$1");
 };
 
 const delay = (ms) =>
